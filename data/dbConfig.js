@@ -1,5 +1,7 @@
-const server = require("./server.js");
+const knex  = require("knex");
 
-const port = process.env.PORT || 4900
+const config = require("../knexfile.js");
 
-server.listen(PORT, () => console.log(`Server is running on ${port}`))
+const environment = process.env.DB_ENV || "development";
+
+module.exports = knex(config[environment]);
